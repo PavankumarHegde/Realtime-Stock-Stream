@@ -1,0 +1,88 @@
+# Kafka version 3.1.0
+
+# Creating virtual env for python environment setup & version control
+python3 -m venv venv
+
+# Activation of python environment
+source ~/Desktop/Social-Media-Based-Stock-Market-Analysis/bin/activate
+
+# Update Kafka: server.properties
+advertised.listeners=PLAINTEXT://[server-ip-address]:9092
+zookeeper.connect=localhost:2181
+
+# Update Zookeeper: zookeeper.properties
+
+
+# After Installation
+source ~/Desktop/Social-Media-Based-Stock-Market-Analysis/bin/activate
+
+
+# Install requirements
+pip install -r ~/Desktop/Social-Media-Based-Stock-Market-Analysis/requirements.txt
+
+# Folder where the Kafka will work
+# Start Zookeeper
+source ~/Desktop/Social-Media-Based-Stock-Market-Analysis/bin/activate
+sudo ~/kafka_2.13-3.1.0/bin/zookeeper-server-start.sh ~/kafka_2.13-3.1.0/config/zookeeper.properties
+
+# Start Kafka
+source ~/Desktop/Social-Media-Based-Stock-Market-Analysis/bin/activate
+sudo JMX_PORT=8004 ~/kafka_2.13-3.1.0/bin/kafka-server-start.sh ~/kafka_2.13-3.1.0/config/server.properties
+
+# sudo mkdir -p /tmp/zookeeper/version-2
+# sudo chown -R pes1ug20cs823:root /tmp/zookeeper
+# Start Kafka Manager
+
+
+source ~/Desktop/Social-Media-Based-Stock-Market-Analysis/bin/activate
+sudo ~/CMAK/sbt clean dist
+sudo ~/CMAK/target/universal/cmak-3.0.0.7/bin/cmak -Dconfig.file=~/CMAK/target/universal/cmak-3.0.0.7/conf/application.conf -Dhttp.port=8080
+
+
+# Open Browser
+localhost:8080
+
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/Sample/Consumer.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/Sample/Producer.py
+
+
+
+
+source ~/Desktop/Social-Media-Based-Stock-Market-Analysis/bin/activate
+# Open Jupyter Lab
+jupyter lab
+
+
+
+
+
+cd /home/pes1ug20cs823/spark-3.2.1-bin-hadoop3.2
+./sbin/start-master.sh
+./sbin/start-worker.sh spark://pes1ug20cs823:7077
+
+# spark-shell
+
+
+
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/StockProducer.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/StockConsumer.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/StockProducer2.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/StockConsumer2.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/TweetConsumer.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/TweetProducer.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/NewsProducer.py
+
+python ~/Desktop/Social-Media-Based-Stock-Market-Analysis/Kakfa/NewsConsumer.py
+
+
+
+/home/pes1ug20cs823/Desktop/Social-Media-Based-Stock-Market-Analysis/Database

@@ -1,0 +1,71 @@
+import yfinance as yf
+import requests
+import pandas as pd
+from datetime import datetime
+
+def download_stock_data(symbol, start_date, end_date):
+    data = yf.download(symbol, start=start_date, end=end_date)
+    return data
+
+def preprocess_data_for_csv(data, symbol, period):
+    data['Symbol'] = symbol
+    data['Period'] = period
+    data.reset_index(inplace=True)
+    data.rename(columns={'Date': 'date'}, inplace=True)
+    return data
+
+def fetch_and_process_financial_data(symbol, period, api_key):
+    base_url = "https://www.alphavantage.co/query"
+    functions = ["BALANCE_SHEET", "INCOME_STATEMENT", "CASH_FLOW"]
+
+    financial_data = {'Symbol': [], 'Period': [], 'date': []}
+
+    for function in functions:
+        params = {
+            "function": function,
+            "symbol": symbol,
+            "apikey": api_key,
+        }
+
+        response = requests.get(base_url, params=params)
+        data = response.json().get(function.lower(), {})
+
+        for date, values in data.items():
+            financial_data['date'].append(date)
+            financial_data['Symbol'].append(symbol)
+            financial_data['Period'].append(period)
+            financial_data.update({f"{function}_{key}": [values[key] for key in values]})
+
+    return pd.DataFrame(financial_data)
+
+def save_to_csv(data, filename):
+    data.to_csv(filename, index=False)
+
+# Example usage:
+symbols = ['7', 'A5', 'AA', 'ABICO', 'ACC']
+start_date = '2023-01-01'
+end_date = '2023-11-30'
+api_key = 'your_alpha_vantage_api_key'
+filename = 'financial_data_combined.csv'
+
+# Initialize an empty dataframe to store the data
+combined_data = pd.DataFrame()
+
+for symbol in symbols:
+    # Download historical stock data
+    stock_data = download_stock_data(symbol, start_date, end_date)
+
+    # Preprocess stock data for CSV
+    stock_data_processed = preprocess_data_for_csv(stock_data, symbol, 'Q1/2004')
+
+    # Fetch and process financial data
+    financial_data = fetch_and_process_financial_data(symbol, 'Q1/2004', api_key)
+
+    # Merge stock and financial data
+    merged_data = pd.merge(stock_data_processed, financial_data, how='left', on='date')
+
+    # Concatenate the data for all symbols
+    combined_data = pd.concat([combined_data, merged_data], ignore_index=True)
+
+# Save the combined data to CSV
+save_to_csv(combined_data, filename)

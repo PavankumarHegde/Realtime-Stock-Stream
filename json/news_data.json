@@ -1,0 +1,10 @@
+{
+	'ticker': 'AAPL', 
+	'title': 'AAPL Q4 2023: Analysts optimistic, despite warnings and negative signs', 
+	'summary': 'Tomorrow will see the announcement of AAPL Q4 2023 earnings, at a time when hardware revenue has been falling, and Apple itself has warned investors to expect big year-on-year drops in iPad and Mac sales.\n\n\n\nWhile Apple suggested that the previous quarter mig…', 
+	'url': 'https://9to5mac.com/2023/11/01/aapl-q4-2023-analysts/',
+	'published_at': '2023-11-01T14:50:35Z', 
+	'sentiment_title': -0.3, 
+	'sentiment_summary': -0.08333333333333333, 
+	'overall_sentiment': -0.19166666666666665
+}

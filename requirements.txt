@@ -5,3 +5,13 @@ prophet==1.1.4
 streamlit==1.11.0
 streamlit_option_menu==0.3.2
 yfinance==0.1.74
+stocknews
+ntscraper
+scikit-learn
+numpy
+tensorflow
+plotly
+streamlit_option_menu
+catboost
+xgboost
+

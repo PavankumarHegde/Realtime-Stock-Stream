@@ -16,7 +16,7 @@ catboost
 xgboost
 
 keras==2.6.0
-tensorflow==2.6.0
+tensorflow
 
 
 textblob==0.15.3
